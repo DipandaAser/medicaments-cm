@@ -1,0 +1,93 @@
+basePath: /
+consumes:
+    - application/json; charset=utf-8
+definitions:
+    ApiError:
+        properties:
+            error:
+                type: string
+                x-go-name: Error
+        type: object
+        x-go-package: medicaments-cm/pkg/models
+    Medicament:
+        properties:
+            amm:
+                type: string
+                x-go-name: AMM
+            authorization_date:
+                type: string
+                x-go-name: AuthorizationStartDate
+            authorization_end_date:
+                type: string
+                x-go-name: AuthorizationEndDate
+            international_nonProprietary_name:
+                type: string
+                x-go-name: InternationalNonProprietaryName
+            laboratory_authorization_holder:
+                type: string
+                x-go-name: LaboratoryAuthorizationHolder
+            laboratory_manufacturer:
+                type: string
+                x-go-name: LaboratoryManufacturer
+            product_designation:
+                type: string
+                x-go-name: ProductDesignation
+        type: object
+        x-go-package: medicaments-cm/pkg/models
+host: api.medicament.cm
+info:
+    description: Documentation of Medicament.cm API.
+    title: Werr API.
+    version: 1.0.0
+paths:
+    /health:
+        get:
+            description: Health endpoint to check if the API is up and running
+            operationId: idOfHealth
+            responses:
+                "200":
+                    $ref: '#/responses/healthResponse'
+            tags:
+                - health
+    /medicaments:
+        get:
+            description: Medicaments returns the list of medicaments based on search keywords
+            operationId: idOfmedicamentsWithoutID
+            parameters:
+                - example: doliprane
+                  in: query
+                  name: search
+                  type: string
+                  x-go-name: Search
+            responses:
+                "200":
+                    $ref: '#/responses/medicaments-Response'
+                "500":
+                    $ref: '#/responses/internalError'
+            tags:
+                - medicaments
+produces:
+    - application/json
+responses:
+    healthResponse:
+        description: This message will always be the same
+        schema:
+            properties:
+                message:
+                    example: Medicament.cm, backend system good!
+                    type: string
+                    x-go-name: Message
+            type: object
+    internalError:
+        description: ""
+        schema:
+            $ref: '#/definitions/ApiError'
+    medicaments-Response:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                $ref: '#/definitions/Medicament'
+            type: array
+schemes:
+    - https
+swagger: "2.0"
