@@ -1,4 +1,4 @@
-name: Build Api image
+name: Build Docs image
 
 on:
   push:
