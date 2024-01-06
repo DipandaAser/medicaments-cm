@@ -37,7 +37,7 @@ definitions:
 host: api.medicament.cm
 info:
     description: Documentation of Medicament.cm API.
-    title: Werr API.
+    title: Medicament.cm API.
     version: 1.0.0
 paths:
     /health:

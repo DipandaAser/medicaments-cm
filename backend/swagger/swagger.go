@@ -1,4 +1,4 @@
-// Package classification Werr API.
+// Package classification Medicament.cm API.
 //
 // Documentation of Medicament.cm API.
 //
